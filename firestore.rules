@@ -1,70 +1,19 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    function isSignedIn() {
-      return request.auth != null;
+    match /users/{userId} {
+      allow read: if true; // profile public lesbar
+      allow write: if request.auth.uid == userId;
     }
-
-    function isOwner(uid) {
-      return isSignedIn() && request.auth.uid == uid;
+    match /flights/{flightId} {
+      allow read: if true; // alles public wie geplant
+      allow create: if request.auth.uid == request.resource.data.userId;
+      allow update, delete: if request.auth.uid == resource.data.userId;
     }
-
-    // user-profile: jeder darf lesen (public profile), nur der user selbst darf schreiben
-    match /users/{uid} {
-      allow read: if true;
-      allow create: if isOwner(uid);
-      allow update: if isOwner(uid);
-      allow delete: if false;
-    }
-
-    // posts: alles public lesbar (feed), nur der ersteller darf schreiben/löschen
     match /posts/{postId} {
       allow read: if true;
-      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
-      allow update: if isSignedIn(); // erlaubt likeCount/commentCount increment von anderen usern
-      allow delete: if isOwner(resource.data.uid);
-    }
-
-    // flüge: public lesbar, nur eigentümer darf schreiben
-    match /flights/{flightId} {
-      allow read: if true;
-      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
-      allow update: if isOwner(resource.data.uid);
-      allow delete: if isOwner(resource.data.uid);
-    }
-
-    // live-tracks: public lesbar (live-map für alle), nur eigentümer darf sein eigenes schreiben
-    match /liveTracks/{uid} {
-      allow read: if true;
-      allow write: if isOwner(uid);
-    }
-
-    // follows: public lesbar (follower-listen), nur der folgende user darf seinen eigenen eintrag schreiben
-    match /follows/{followId} {
-      allow read: if true;
-      allow create: if isSignedIn() && request.resource.data.followerUid == request.auth.uid;
-      allow delete: if isSignedIn() && resource.data.followerUid == request.auth.uid;
-    }
-
-    // likes: public lesbar, nur eigener like schreibbar
-    match /likes/{likeId} {
-      allow read: if true;
-      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
-      allow delete: if isSignedIn() && resource.data.uid == request.auth.uid;
-    }
-
-    // kommentare: public lesbar, nur eigener kommentar schreibbar/löschbar
-    match /posts/{postId}/items/{commentId} {
-      allow read: if true;
-      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
-      allow delete: if isOwner(resource.data.uid);
-    }
-
-    // vereine: gecachte weglide-daten, lesbar für alle, schreiben nur über backend/admin
-    match /clubs/{clubId} {
-      allow read: if true;
-      allow write: if false;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth.uid == resource.data.userId;
     }
   }
 }
