@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "769277594675",
+    "project_id": "glidrde",
+    "storage_bucket": "glidrde.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769277594675:android:a4e392f8c57c6295e76746",
+        "android_client_info": {
+          "package_name": "com.laendspotter.glidr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu3tOEkq0RjQH-rUqpI7PL5R02-7z53FI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
