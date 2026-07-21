@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#0A0E14"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.laendspotter.glidr",
@@ -20,7 +22,9 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "wird gebraucht um deine flüge live zu tracken",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "wird gebraucht um deinen flug auch im hintergrund zu tracken",
-        "UIBackgroundModes": ["location"]
+        "UIBackgroundModes": [
+          "location"
+        ]
       }
     },
     "android": {
@@ -45,7 +49,8 @@
           "icon": "./assets/notification-icon.png",
           "color": "#EC0016"
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "extra": {
       "router": {
