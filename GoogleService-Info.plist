@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.laendspozzer.glidr</string>
+	<string>com.laendspotter.glidr</string>
 	<key>PROJECT_ID</key>
 	<string>glidrde</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:769277594675:ios:c4b8d715b5b1b108e76746</string>
+	<string>1:769277594675:ios:997dbb0b46423f02e76746</string>
 </dict>
 </plist>
